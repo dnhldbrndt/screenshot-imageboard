@@ -1,0 +1,21 @@
+.tag-button {
+	border-radius: 5px;
+	background-color: #333366;
+	color: white;
+	padding: 8px;
+
+}
+.tag-button:hover {
+	background-color: #cc00ff;
+	color: white;
+	cursor: pointer;
+}
+.tag-button a {
+	color: white;
+}
+
+.tags-layout {
+	display: flex;
+	flex-direction: row;
+	gap: 5px;	flex-wrap: wrap;
+}

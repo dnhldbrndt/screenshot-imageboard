@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<head>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript">
+function loadDelete() {
+	const iddelete = document.getElementById("iddelete").value;
+	const urldelete = "/mod/auth/" + iddelete;
+	console.log(urldelete);
+  $.ajax({
+    url: urldelete, 
+    type: 'DELETE',
+    success: function(result) {
+        // Response
+        console.log('Request successful:', result);
+    },
+    error: function(xhr, status, error) {
+        // Errors 
+        console.error('Error:', status, error);
+    }
+});
+  console.log("Success");
+}
+function hello() {
+alert('Hello');
+}
+</script>
+</head>
+<html>
+<body>
+<div id="demo">
+	ID: <input type="text"  id="iddelete" name="id" placeholder="id" />
+    <button type="button" onclick="loadDelete()">Delete</button>
+</div>
+</body>
+</html>

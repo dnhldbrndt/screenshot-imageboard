@@ -1,0 +1,36 @@
+{
+  "screenshots": [
+    {
+      "id": 1,
+      "title": "Stifler Get off!",
+      "film": "American Pie 2",
+      "imgsrc": "upload/image.jpg",
+      "tags": ["Stifler", "Funny", "American Pie"],
+      "flag": false
+    },
+    {
+      "id": 2,
+      "title": "Thumbs up",
+      "film": "Who Am I?",
+      "imgsrc": "upload/image2.JPG",
+      "tags": ["Funny", "Jackie Chan"],
+      "flag": false
+    },
+    {
+      "id": 3,
+      "title": "Ouch!",
+      "film": "Who Am I?",
+      "imgsrc": "upload/image3.jpg",
+      "tags": [ ],
+      "flag": false
+    },
+    {
+      "id": 4,
+      "title": "Bane?",
+      "film": "Dark Knight Rises",
+      "imgsrc": "upload/image1.jpg",
+      "tags": ["Bane","Batman","Dark Knight"],
+      "flag": false
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "comments": [
+    {
+      "id": 1,
+      "name": "Anonymous",
+      "screenshotid": "1",
+      "comment": "Great screenshot.",
+      "comment_date": "07/11/2020"
+    },
+    {
+      "id": 2,
+      "name": "Stephanie Wilson",
+      "screenshotid": "2",
+      "comment": "ha ha ha",
+      "comment_date": "09/17/2020"	
+    },
+    {
+      "id": 3,
+      "name": "acidburn",
+      "screenshotid": "1",
+      "comment": "I can't believe this shot is real!",
+      "comment_date": "10/20/2020"
+    }
+  ]
+}
