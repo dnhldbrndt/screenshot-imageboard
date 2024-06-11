@@ -25,6 +25,7 @@ const Edit = () => {
   let comments_url = url + `image/fetchAllComments/screenshot/${id}`;
   let post_comment = root_url + `postcomment/${id}`;
   let editurl = url + `mod/auth/${id}`
+  let delurl = url + `mod/auth/${id}`
   const get_screen = async () => {
     const res = await fetch(screenpost_url, {
       method: "GET"
@@ -62,7 +63,9 @@ const Edit = () => {
  }
   const deletepost = async (id) => {
 	 console.log("hold it " + id); 
-	 
+	  const res = await fetch(delurl, {
+      method: "DELETE"
+	});
 	 window.location.href = "/screenshots";
   }
   
