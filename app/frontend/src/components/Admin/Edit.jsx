@@ -62,7 +62,6 @@ const Edit = () => {
       return response.json();
     })
     .then(data => {
-      // Handle response or any additional logic here
       console.log('Success:', data);
     })
     .catch(error => {

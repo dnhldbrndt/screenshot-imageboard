@@ -6,6 +6,7 @@ import PostComment from "./components/Screenshots/PostComment"
 import Upload from "./components/Upload/Upload"
 import Login from "./components/Admin/Login"
 import Admin from "./components/Admin/Admin"
+import Register from "./components/Admin/Register"
 import Edit from "./components/Admin/Edit"
 import Tags from "./components/Tags/Tags"
 import Tag from "./components/Tags/Tag"
@@ -22,6 +23,7 @@ function App() {
 	  <Route path="/upload" element={<Upload/>} />
       <Route path="/postcomment/:id" element={<PostComment/>} />
 	  <Route path="/login" element={<Login/>} />
+	  <Route path="/register" element={<Register/>} />
 	  <Route path="/admin" element={<Admin/>} />	  
 	  <Route path="/tags" element={<Tags/>} />
 	  <Route path="/tags/:id" element={<Tag/>} />
