@@ -63,27 +63,24 @@ router.get ('/logout', function(req,res,next) {
 // Login 
 router.post('/login', async (req, res) => { 
 
-  const username =   req.body.username;
+  const username = req.body.username;
   console.log("USER: " + username);
-  const password =   req.body.password;
+  const password = req.body.password;
   console.log("PASS: " + password);
-  const authen =   await  authenticate(username, password);
+  const authen = await authenticate(username, password);
  
   if (!authen) {
     return res.status(401).json({message: "Error logging in."});
   } else {
-    let accessToken = jwt.sign ({
-         
-    }, 'access', { expiresIn: 60 * 60});
+    let accessToken = jwt.sign({ username }, 'access', { expiresIn: '1h' });
 
     req.session.authorization = {
-        accessToken,username
-    }
-	return res.status(200).json({message: "Authenticated.", username: username});
-
+        accessToken,
+        username
+    };
+	return res.status(200).json({message: "Authenticated.", token: accessToken, username: username});
   }
 });
-
 
 // Register
 router.post('/user/create', async (req, res) => {
@@ -103,7 +100,6 @@ router.post('/user/create', async (req, res) => {
 // Test mod
 router.get('/auth/test',  async (req, res) => {
 	res.send("You're in.");
-
 });
 // Fetch users
 router.get('/auth/fetchUsers',  async (req, res) => {
@@ -119,33 +115,45 @@ router.delete('/auth/:id',  async (req, res) => {
 	const screenshotid = await req.params.id;
 	console.log(screenshotid);
 	try {
-		Screenshots.find({id: screenshotid}).deleteOne({id: screenshotid}).exec();
+		await Screenshots.find({id: screenshotid}).deleteOne({id: screenshotid}).exec();
 		console.log ("Succesfully deleted.");
-		
-	} catch (error) { console.log (error);}
+		res.status(200).json({ message: 'Successfully deleted.' });
+	} catch (error) { 
+		console.log (error);
+		res.status(500).json({ error: 'Error deleting screenshot.' });
+	}
 });
 // Delete user 
 router.delete('/auth/user/:id',  async (req, res) => {
 	const userid = await req.params.id;
 	console.log(userid);
 	try {
-		Users.find({id: userid}).deleteOne({id: userid}).exec();
+		await Users.find({id: userid}).deleteOne({id: userid}).exec();
 		console.log ("Succesfully deleted.");
-	} catch (error) { console.log (error);}
+		res.status(200).json({ message: 'Successfully deleted.' });
+	} catch (error) { 
+		console.log (error);
+		res.status(500).json({ error: 'Error deleting user.' });
+	}
 });
 // Edit screenshot post
 router.put('/auth/:id',  async (req, res) => {
 	const screenshotid = await req.params.id;
 	console.log(screenshotid);
-	data = req.body;
+	const data = req.body;
  
 	try {
-		Screenshots.findAndModify({
-			query: {"id": screenshotid}, 
-			update: {$set: {"tags": data['tags'], "title": data['title'], "film": data['film'] }}, 
-			new: true  });
+		await Screenshots.findOneAndUpdate(
+			{ id: screenshotid },
+			{ $set: { tags: data.tags, title: data.title, film: data.film } },
+			{ new: true }
+		);
 		console.log ("Succesfully updated.");
-	} catch (error) { console.log (error);}
+		res.status(200).json({ message: 'Successfully updated.' });
+	} catch (error) {
+		console.log (error);
+		res.status(500).json({ error: 'Error updating screenshot.' });
+	}
 });
 // Fetch all screenshot posts that have been flagged
 router.get('/auth/fetchAllFlagged', async (req, res) => {
@@ -162,20 +170,29 @@ router.put('/auth/flag/:id',  async (req, res) => {
 	console.log(screenshotid);
  
 	try {
-		Screenshots.findAndModify({
-			query: {"id": screenshotid}, 
-			update: {$set: {"flag": false}}});
+		await Screenshots.findOneAndUpdate(
+			{ id: screenshotid },
+			{ $set: { flag: false } }
+		);
 		console.log ("Succesfully updated.");
-	} catch (error) { console.log (error);}
+		res.status(200).json({ message: 'Successfully updated.' });
+	} catch (error) {
+		console.log (error);
+		res.status(500).json({ error: 'Error updating flag.' });
+	}
 });
 // Delete comment 
 router.delete('/auth/comment/:id',  async (req, res) => {
 	const commentid = await req.params.id;
 	console.log(commentid);
 	try {
-		Comments.find({id: commentid}).deleteOne({id: commentid}).exec();
+		await Comments.find({id: commentid}).deleteOne({id: commentid}).exec();
 		console.log ("Succesfully deleted.");
-	} catch (error) { console.log (error);}
+		res.status(200).json({ message: 'Successfully deleted.' });
+	} catch (error) { 
+		console.log (error);
+		res.status(500).json({ error: 'Error deleting comment.' });
+	}
 });
 
 module.exports = router;
