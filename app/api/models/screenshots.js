@@ -7,26 +7,26 @@ const screenshots = new Schema({
   id: {
 	type: Number,
 	required: true,
-	},
+  },
   title: {
 	type: String,
 	required: true
   },
   film: {
-    type: String,
-    required: true
+	type: String,
+	required: true
   },
   imgsrc: {
-    type: String,
-    required: true
+	type: String,
+	required: true
   },
   tags: [{
-    type: String,
-    required: false
+	type: String,
+	required: false
   }],
   flag: {
-    type: Boolean,
-    required: true
+	type: Boolean,
+	required: true
   }
 });
 
