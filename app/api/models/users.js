@@ -14,13 +14,13 @@ const users = new Schema({
     type: String,
 	is: ["^[a-z]+$", 'i'],
 	allowNull: false,
-    required: true,
-	},
+	required: true,
+  },
   password: {
     type: String,
 	allowNull: false,
 	len: [2, 10],
-    required: true
+	required: true
   }
 });
 
