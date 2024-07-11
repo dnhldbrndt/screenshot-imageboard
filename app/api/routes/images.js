@@ -136,7 +136,6 @@ router.get('/fetchAllComments/screenshot/:id', async (req, res) => {
     res.status(500).json({ error: 'Error fetching comments.' });
   }
 });
-///////////////////////////////////////////////////////////////////////
 
 router.post('/upload', async (req, res) => {
 	console.log(req.files);
@@ -188,9 +187,6 @@ router.post('/upload', async (req, res) => {
 	
 });
 
-
-///////////////////////////////////////////////////////////////////////
-
 //Express route to add comment
 router.post('/add_comment',  async (req, res) => {
   data = req.body;
@@ -213,7 +209,5 @@ router.post('/add_comment',  async (req, res) => {
     res.status(500).json({ error: 'Error adding comment.' });
   }
 });
-
-
 
 module.exports = router;
